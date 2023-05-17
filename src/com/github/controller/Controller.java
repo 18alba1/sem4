@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.github.dtos.*;
 import com.github.model.*;
 import com.github.integration.ExternalInventory;
+import com.github.integration.ItemNumberDoesNotExistException;
+import com.github.integration.DatabaseFailureException;
 
 /*
  * The controller class which contains all logic
@@ -13,6 +15,7 @@ public class Controller
 {
     private Goods goods;
     private Register register;
+    private ExceptionLogger logger = new ExceptionLogger();
 
     /* 
      * Creates the Register
@@ -37,12 +40,25 @@ public class Controller
      * @param barcode The barcode of the product that is currently being scanned
      * @return ItemDTO which represents the scanned product
      */
-    public ItemDTO scanProduct(int barcode)
+    public ItemDTO scanProduct(int barcode) throws ItemNumberDoesNotExistException, DatabaseFailureException
     {
-        ItemDTO item = goods.addProduct(barcode);
-        register.updateTotal(item);
-        
-        return item;
+        try
+        {
+            ItemDTO item = goods.addProduct(barcode);
+            register.updateTotal(item);
+    
+            return item;
+        }
+        catch (ItemNumberDoesNotExistException exception)    
+        {
+            logger.errorLog(exception);
+            throw new ItemNumberDoesNotExistException(barcode, exception);
+        }
+        catch (DatabaseFailureException exception)
+        {
+            logger.errorLog(exception);
+            throw new DatabaseFailureException();
+        }
     }
     
     /*

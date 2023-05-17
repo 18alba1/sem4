@@ -10,8 +10,8 @@ public class ItemNumberDoesNotExistException extends Exception
      * Thrown when item not found in item inventory
      * @param wrongItemNumber the item identifier of the product
      */
-    public ItemNumberDoesNotExistException (int wrongItemNumber)
+    public ItemNumberDoesNotExistException (int wrongItemNumber, Exception exception)
     {
-        super ("Could not find product with itemIdenifier: " + wrongItemNumber + "in the inventory catalog.");
+        super ("Could not find product with itemIdenifier: " + wrongItemNumber + "in the inventory catalog." + exception + ".");
     }
 }

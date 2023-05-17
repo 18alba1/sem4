@@ -2,6 +2,8 @@ package com.github.view;
 
 import com.github.controller.Controller;
 import com.github.dtos.*;
+import com.github.integration.ItemNumberDoesNotExistException;
+import com.github.integration.DatabaseFailureException;
 
 /*
  * The view which uses the controller to make method calls
