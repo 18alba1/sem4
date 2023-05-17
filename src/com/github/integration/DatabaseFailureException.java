@@ -10,6 +10,6 @@ public class DatabaseFailureException extends Exception
      */
     public DatabaseFailureException ()
     {
-        super ("ERROR :  Failed to connect with database server");
+        super ("ERROR :  Failed to connect with database server.");
     }
 }

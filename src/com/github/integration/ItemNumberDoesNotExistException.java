@@ -6,8 +6,12 @@ package com.github.integration;
  */
 public class ItemNumberDoesNotExistException extends Exception
 {
+    /**
+     * Thrown when item not found in item inventory
+     * @param wrongItemNumber the item identifier of the product
+     */
     public ItemNumberDoesNotExistException (int wrongItemNumber)
     {
-        super ("Could not find the enterd itemIdenifier: " + wrongItemNumber + "in the inventory catalog.");
+        super ("Could not find product with itemIdenifier: " + wrongItemNumber + "in the inventory catalog.");
     }
 }
