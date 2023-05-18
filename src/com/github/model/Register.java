@@ -1,6 +1,7 @@
 package com.github.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.github.dtos.*;
 import com.github.integration.*;
@@ -13,6 +14,7 @@ public class Register
     private double totalPrice;
     private double totalVAT; 
     private double change;
+    private List<SaleObserver> sObs = new ArrayList<SaleObserver>();
 
     /*
      * The register
@@ -81,5 +83,26 @@ public class Register
     public double getChange()
     {
         return this.change;
+    }
+
+    /**
+     * Source: page 213-214
+     * Adds observer to the observer list (sObs)
+     * @param SO the observer that is added to the list
+     */
+    public void addsObs (SaleObserver SO)
+    {
+        sObs.add(SO);
+    }
+
+    /**
+     * Calls SaleObservers
+     */
+    public void notifyObservers()
+    {
+        for (int i = 0; i < sObs.size(); i++) 
+        {
+            sObs.get(i).priceOfSale(this.totalPrice);
+        }
     }
 }

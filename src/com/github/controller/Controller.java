@@ -1,6 +1,7 @@
 package com.github.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.github.dtos.*;
 import com.github.model.*;
@@ -16,6 +17,7 @@ public class Controller
     private Goods goods;
     private Register register;
     private ExceptionLogger logger = new ExceptionLogger();
+    private List<SaleObserver> sObs = new ArrayList<SaleObserver>();
 
     /* 
      * Creates the Register
@@ -26,11 +28,13 @@ public class Controller
     }
     
     /*
-     * Starts the sale
+     * Starts the sale, creates goods and adds the Saleobservers
      */
     public void startSale()
     {
         goods = new Goods();
+        for(SaleObserver SO : sObs)
+            register.addsObs(SO);
     }
 
     /*
@@ -88,4 +92,15 @@ public class Controller
         
         return receipt;
     }
+
+     /**
+     * Source: page 213-214
+     * Adds observer to the observer list (sObs)
+     * @param SO the observer that is added to the list
+     */
+    public void addsObs (SaleObserver SO)
+    {
+        sObs.add(SO);
+    }
+
 }
