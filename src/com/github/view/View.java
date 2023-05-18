@@ -4,6 +4,7 @@ import com.github.controller.Controller;
 import com.github.dtos.*;
 import com.github.integration.ItemNumberDoesNotExistException;
 import com.github.integration.DatabaseFailureException;
+import com.github.view.TotalRevenueFileOutput;
 
 /*
  * The view which uses the controller to make method calls

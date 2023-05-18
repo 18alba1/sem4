@@ -37,12 +37,20 @@ public class Controller
             register.addsObs(SO);
     }
 
+    /*  Also use exception(s) to indicate that the database can not be called, it might be
+    for example that the database server is simply not running. Since there is no real
+    database, you must simulate this situation. That can be done by always throwing
+    a database failure exception when a search is made for a particular, hardcoded,
+    item identifier. */ // !!!!!
+
     /*
      * Scans the products barcod and adds prdouct to item list.
      * It also updates total in Register.
      * 
      * @param barcode The barcode of the product that is currently being scanned
      * @return ItemDTO which represents the scanned product
+     * @throws ItemNumberDoesNotExistException If the itemNumber does not exist in the itemInventory.
+	 * @throws DatabaseFailureException If there is an issue with the database.
      */
     public ItemDTO scanProduct(int barcode) throws ItemNumberDoesNotExistException, DatabaseFailureException
     {

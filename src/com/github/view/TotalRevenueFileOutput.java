@@ -20,7 +20,7 @@ public class TotalRevenueFileOutput implements SaleObserver
     /**
      * Creates a new file .
      */
-    public TotalIncomeFileOutput() 
+    public TotalRevenueFileOutput() 
     {
         try
         {
