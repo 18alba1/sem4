@@ -1,8 +1,9 @@
 package com.github.integration;
 
 import java.util.ArrayList;
-
 import com.github.dtos.ItemDTO;
+import com.github.integration.ItemNumberDoesNotExistException;
+import com.github.integration.DatabaseFailureException;
 
 /*
  * The external inventory of the program
@@ -41,6 +42,23 @@ public class ExternalInventory
             item = new ItemDTO(0, "NOTFound",0 , "", 0, 0);
         }
         return item;
+    }
+
+    /**
+     * Searches fo intem in the item inventory. Item with barcode 0 does not exist (hard coded)
+     * barcodes 1-3 exsist.
+     * @param barcode   The barcode of the product
+     * @return          if the barcode is valid, the item will be returned
+     * @throws ItemNumberDoesNotExistException   ItemNumberDoesNotExistException if the barcode is not within the range 1-3.   
+     * @throws DatabaseFailureException DatabaseFailureException if the barcode is 0, indicating a database failure.
+     */
+    public ItemDTO searchItemInventory(int barcode) throws ItemNumberDoesNotExistException, DatabaseFailureException 
+    {
+        if (barcode == 0)
+            throw new DatabaseFailureException();
+        else if (barcode >= 1 && barcode <= 3) 
+            return getItem(barcode);
+        throw new ItemNumberDoesNotExistException(barcode);
     }
 
     /*

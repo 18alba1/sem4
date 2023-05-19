@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.github.dtos.*;
 import com.github.model.*;
+import com.github.view.ErrorMessageHandler;
 import com.github.integration.ExternalInventory;
 import com.github.integration.ItemNumberDoesNotExistException;
 import com.github.integration.DatabaseFailureException;
@@ -16,7 +17,7 @@ public class Controller
 {
     private Goods goods;
     private Register register;
-    private ExceptionLogger logger = new ExceptionLogger();
+    private ErrorMessageHandler logger = new ErrorMessageHandler();
     private List<SaleObserver> sObs = new ArrayList<SaleObserver>();
 
     /* 
@@ -36,12 +37,6 @@ public class Controller
         for(SaleObserver SO : sObs)
             register.addsObs(SO);
     }
-
-    /*  Also use exception(s) to indicate that the database can not be called, it might be
-    for example that the database server is simply not running. Since there is no real
-    database, you must simulate this situation. That can be done by always throwing
-    a database failure exception when a search is made for a particular, hardcoded,
-    item identifier. */ // !!!!!
 
     /*
      * Scans the products barcod and adds prdouct to item list.
@@ -63,12 +58,12 @@ public class Controller
         }
         catch (ItemNumberDoesNotExistException exception)    
         {
-            logger.errorLog(exception);
-            throw new ItemNumberDoesNotExistException(barcode, exception);
+            logger.errorMessage(exception);
+            throw new ItemNumberDoesNotExistException(barcode);
         }
         catch (DatabaseFailureException exception)
         {
-            logger.errorLog(exception);
+            logger.errorMessage(exception);
             throw new DatabaseFailureException();
         }
     }
@@ -95,7 +90,7 @@ public class Controller
     {
         ArrayList<ItemDTO> itemList = goods.getItems();
         ReceiptDTO receipt = register.createReceipt(itemList);
-
+        register.notifyObservers();
         ExternalInventory.updateInventory(itemList);
         
         return receipt;

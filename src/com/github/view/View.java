@@ -11,6 +11,7 @@ import com.github.view.TotalRevenueFileOutput;
  */
 public class View 
 {
+    private ErrorMessageHandler logger = new ErrorMessageHandler();
     /*
      * Creates a new instance of this class that uses the Controller. This is needed to make calls in other layers
      * 
@@ -19,18 +20,48 @@ public class View
     public View(Controller contr)
     {
         contr.startSale();
+        contr.addsObs(new TotalRevenueView());
+        contr.addsObs(new TotalRevenueFileOutput());
 
-        ItemDTO item1 = contr.scanProduct(1);
-        System.out.println("Scanned Item: " + item1.getName());
+        try
+        {
+            ItemDTO item1 = contr.scanProduct(1);
+            System.out.println("Scanned Item: " + item1.getName());
+        }
+        catch (ItemNumberDoesNotExistException exception)
+        {
+            logger.errorMessage(exception);
+        }
 
-        ItemDTO item2 = contr.scanProduct(2);
-        System.out.println("Scanned Item: " + item2.getName());
+        try
+        {
+            ItemDTO item2 = contr.scanProduct(2);
+            System.out.println("Scanned Item: " + item2.getName());
+        }
+        catch (ItemNumberDoesNotExistException exception)
+        {
+            logger.errorMessage(exception);
+        }
 
-        ItemDTO item3 = contr.scanProduct(2);
-        System.out.println("Scanned Item: " + item3.getName());
+        try
+        {
+            ItemDTO item3 = contr.scanProduct(2);
+            System.out.println("Scanned Item: " + item3.getName());
+        }
+        catch (ItemNumberDoesNotExistException exception)
+        {
+            logger.errorMessage(exception);
+        }
 
-        ItemDTO item4 = contr.scanProduct(3);
-        System.out.println("Scanned Item: " + item4.getName());
+        try
+        {
+            ItemDTO item4 = contr.scanProduct(3);
+            System.out.println("Scanned Item: " + item4.getName());    
+        }
+        catch (ItemNumberDoesNotExistException exception)
+        {
+            logger.errorMessage(exception);
+        }
 
         double change = contr.pay(500);
         System.out.println("change back: " + change + "\n");

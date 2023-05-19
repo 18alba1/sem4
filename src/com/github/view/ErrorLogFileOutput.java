@@ -1,5 +1,4 @@
 package com.github.view;
-import com.github.model.SaleObserver;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,35 +11,23 @@ import java.io.PrintWriter;
 /**
  * Used to print the total income to a file.
  */
-public class TotalRevenueFileOutput implements SaleObserver  
+public class ErrorLogFileOutput
 {
-    private double totalRevenue;
     private PrintWriter OutputFile;
 
     /**
      * Creates a new file .
      */
-    public TotalRevenueFileOutput() 
+    public ErrorLogFileOutput() 
     {
         try
         {
-           OutputFile = new PrintWriter (new FileWriter("totalIncome.txt"), true); 
+           OutputFile = new PrintWriter (new FileWriter("DeveloperErrorLog.txt"), true); 
         }
         catch (IOException IOe)
         {
            System.out.println("Failed to make file");
            IOe.printStackTrace();
         }
-    }
-
-    /**
-     * prints total revenue
-     * @param totalPrice added to total revenue
-     */
-    @Override       //subclass method should override superclass method
-    public void priceOfSale (double totalPrice)
-    {
-        totalRevenue += totalPrice;
-        System.out.println("Total revenue: " + totalRevenue);
     }
 }

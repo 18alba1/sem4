@@ -11,6 +11,6 @@ public class ErrorMessageHandler
          * Prints error masager to user
          * @param exception the exception
          */
-        System.out.println ("ERROR: " + exception);
+        System.out.println ("Developer errorlog: " + exception);
     }
 }
