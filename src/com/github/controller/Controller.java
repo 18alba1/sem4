@@ -19,6 +19,7 @@ public class Controller
     private Register register;
     private ErrorMessageHandler logger = new ErrorMessageHandler();
     private List<SaleObserver> sObs = new ArrayList<SaleObserver>();
+    private ExternalInventory extInvSys;
 
     /* 
      * Creates the Register
@@ -51,7 +52,7 @@ public class Controller
     {
         try
         {
-            ItemDTO item = goods.addProduct(barcode);
+            ItemDTO item = extInvSys.searchItemInventory(barcode);
             register.updateTotal(item);
     
             return item;

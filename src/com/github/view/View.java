@@ -32,6 +32,10 @@ public class View
         {
             logger.errorMessage(exception);
         }
+        catch (DatabaseFailureException exception)
+        {
+            logger.errorMessage(exception);
+        }
 
         try
         {
@@ -39,6 +43,10 @@ public class View
             System.out.println("Scanned Item: " + item2.getName());
         }
         catch (ItemNumberDoesNotExistException exception)
+        {
+            logger.errorMessage(exception);
+        }
+        catch (DatabaseFailureException exception)
         {
             logger.errorMessage(exception);
         }
@@ -52,6 +60,10 @@ public class View
         {
             logger.errorMessage(exception);
         }
+        catch (DatabaseFailureException exception)
+        {
+            logger.errorMessage(exception);
+        }
 
         try
         {
@@ -59,6 +71,10 @@ public class View
             System.out.println("Scanned Item: " + item4.getName());    
         }
         catch (ItemNumberDoesNotExistException exception)
+        {
+            logger.errorMessage(exception);
+        }
+        catch (DatabaseFailureException exception)
         {
             logger.errorMessage(exception);
         }

@@ -13,7 +13,10 @@ public class ExternalInventory
     /*
      * The external inventory
      */
-    public ExternalInventory() {}
+    public ExternalInventory() 
+    {
+        
+    }
 
     /*
      * Returns an ItemDTO object with the specified barcode 
