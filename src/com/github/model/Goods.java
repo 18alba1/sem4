@@ -13,6 +13,7 @@ import com.github.integration.DatabaseFailureException;
 public class Goods 
 {
     private ArrayList<ItemDTO> items = new ArrayList<ItemDTO>();
+    private ExternalInventory externalInventory = new ExternalInventory();
 
     /*
      * goods
@@ -62,7 +63,7 @@ public class Goods
      */
     public ItemDTO addProduct(int barcode) throws ItemNumberDoesNotExistException, DatabaseFailureException
     {
-        ItemDTO item = ExternalInventory.getItem(barcode);
+        ItemDTO item = externalInventory.searchItemInventory(barcode);
         if (item.getItemNumber() != 0)
         {
         boolean found = checkIfDuplicatedItem(item);

@@ -10,6 +10,8 @@ import com.github.integration.DatabaseFailureException;
  */
 public class ExternalInventory 
 {
+    private ItemDTO[] itemList = new ItemDTO[3];
+
     /*
      * The external inventory
      */
@@ -18,12 +20,23 @@ public class ExternalInventory
         
     }
 
+    /**
+     * Item inventory with all items
+     */
+    private void itemInventory ()
+    {
+        itemList[0] = new ItemDTO(1, "Tomat",10 , "Röd", 1, 25);
+		itemList[1] = new  ItemDTO(2, "Potatis",5 , "God", 1, 25);
+		itemList[2] = new ItemDTO(3, "Gurka",15 , "Grön", 1, 25);
+    }
+
     /*
      * Returns an ItemDTO object with the specified barcode 
      * 
      * @param barcode, the unique barcode identifier of the item
      * @return an ItemDTO object with the specified barcode and other values for all other parameters
      */
+    /* 
     public static ItemDTO getItem(int barcode)      
     {
         //Exampel code for test
@@ -47,9 +60,9 @@ public class ExternalInventory
         return item;
     }
 
+    */
     /**
-     * Searches fo intem in the item inventory. Item with barcode 0 does not exist (hard coded)
-     * barcodes 1-3 exsist.
+     * Searches fo intem in the item inventory. 
      * @param barcode   The barcode of the product
      * @return          if the barcode is valid, the item will be returned
      * @throws ItemNumberDoesNotExistException   ItemNumberDoesNotExistException if the barcode is not within the range 1-3.   
@@ -57,12 +70,17 @@ public class ExternalInventory
      */
     public ItemDTO searchItemInventory(int barcode) throws ItemNumberDoesNotExistException, DatabaseFailureException 
     {
+        itemInventory();
         if (barcode == 0)
-            throw new DatabaseFailureException();
-        else if (barcode >= 1 && barcode <= 3) 
-            return getItem(barcode);
-        throw new ItemNumberDoesNotExistException(barcode);
-    }
+			throw new DatabaseFailureException();
+		for (int i = 0; i < itemList.length; i++) 
+        {
+            ItemDTO foundItem = itemList[i];
+			if (this.itemList[i].getItemNumber() == barcode)
+                return foundItem;
+		}
+		throw new ItemNumberDoesNotExistException(barcode);
+	}
 
     /*
      * Updates inventory
