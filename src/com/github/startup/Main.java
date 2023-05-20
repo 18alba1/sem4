@@ -22,7 +22,7 @@ public class Main
         new View(controller);
 
         new AccountingSystem();
-        new ExternalInventory();
+        //new ExternalInventory();
         new SaleLog();
     }
 }

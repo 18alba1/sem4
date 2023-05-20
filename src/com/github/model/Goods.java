@@ -13,7 +13,7 @@ import com.github.integration.DatabaseFailureException;
 public class Goods 
 {
     private ArrayList<ItemDTO> items = new ArrayList<ItemDTO>();
-    private ExternalInventory externalInventory = new ExternalInventory();
+    private ExternalInventory externalInventory = ExternalInventory.getInstance();
 
     /*
      * goods

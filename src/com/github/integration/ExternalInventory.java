@@ -11,13 +11,19 @@ import com.github.integration.DatabaseFailureException;
 public class ExternalInventory 
 {
     private ItemDTO[] itemList = new ItemDTO[3];
+    private static ExternalInventory instance = null;
 
     /*
      * The external inventory
      */
-    public ExternalInventory() 
+    private ExternalInventory() { }
+
+    public static ExternalInventory getInstance()
     {
-        
+        if (instance == null)
+            instance = new ExternalInventory();
+
+        return instance;
     }
 
     /**
