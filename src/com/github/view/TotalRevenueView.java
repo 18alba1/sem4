@@ -17,6 +17,6 @@ public class TotalRevenueView implements SaleObserver
     public void priceOfSale (double totalPrice)
     {
         totalRevenue += totalPrice;
-        System.out.println("Total revenue: " + totalRevenue);
+        System.out.println("Date: " + java.time.LocalDate.now() + " Total revenue: " + totalRevenue + "\n");
     }
 }

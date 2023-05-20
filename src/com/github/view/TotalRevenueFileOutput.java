@@ -24,7 +24,7 @@ public class TotalRevenueFileOutput implements SaleObserver
     {
         try
         {
-           OutputFile = new PrintWriter (new FileWriter("totalIncome.txt"), true); 
+            OutputFile = new PrintWriter (new FileWriter("totalIncome.txt"), true); 
         }
         catch (IOException IOe)
         {
@@ -41,6 +41,6 @@ public class TotalRevenueFileOutput implements SaleObserver
     public void priceOfSale (double totalPrice)
     {
         totalRevenue += totalPrice;
-        System.out.println("Total revenue: " + totalRevenue);
+        OutputFile.println("Date: " + java.time.LocalDate.now() + " Total revenue: " + totalRevenue + "\n");
     }
 }

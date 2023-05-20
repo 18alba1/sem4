@@ -13,7 +13,7 @@ import java.io.PrintWriter;
  */
 public class ErrorLogFileOutput
 {
-    private PrintWriter OutputFile;
+    private static PrintWriter OutputFile;
 
     /**
      * Creates a new file .
@@ -22,12 +22,22 @@ public class ErrorLogFileOutput
     {
         try
         {
-           OutputFile = new PrintWriter (new FileWriter("DeveloperErrorLog.txt"), true); 
+           OutputFile = new PrintWriter (new FileWriter("DeveloperErrorLog.txt", true ), true); 
         }
         catch (IOException IOe)
         {
            System.out.println("Failed to make file");
            IOe.printStackTrace();
         }
+    }
+
+    public static void errorMessage (Exception exception)
+    {
+        /**
+         * Prints error masager to user
+         * @param exception the exception
+         */
+        OutputFile.println ("Date: " + java.time.LocalDate.now() + " Developer errorlog: " + exception);
+        System.out.println("Date: " + java.time.LocalDate.now() + " Developer errorlog: " + exception + "\n");
     }
 }

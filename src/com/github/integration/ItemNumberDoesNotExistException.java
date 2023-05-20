@@ -12,6 +12,6 @@ public class ItemNumberDoesNotExistException extends Exception
      */
     public ItemNumberDoesNotExistException (int barcode)
     {
-        super ("Could not find product with itemIdenifier: " + barcode + "in the inventory catalog.");
+        super ("Could not find product with itemIdenifier: " + barcode + " in the inventory catalog.");
     }
 }

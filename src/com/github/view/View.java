@@ -11,7 +11,6 @@ import com.github.view.TotalRevenueFileOutput;
  */
 public class View 
 {
-    private ErrorMessageHandler logger = new ErrorMessageHandler();
     /*
      * Creates a new instance of this class that uses the Controller. This is needed to make calls in other layers
      * 
@@ -19,22 +18,32 @@ public class View
      */
     public View(Controller contr)
     {
-        contr.startSale();
         contr.addsObs(new TotalRevenueView());
         contr.addsObs(new TotalRevenueFileOutput());
+        contr.addsObsToRegister();
+        testRun(contr);
+        testRun(contr);
+        testRun(contr);
+        
+    }
+
+    private void testRun(Controller contr)
+    {
+        contr.startSale();
 
         try
         {
-            ItemDTO item1 = contr.scanProduct(1);
+            ItemDTO item1 = contr.scanProduct(0);
             System.out.println("Scanned Item: " + item1.getName());
+      
         }
         catch (ItemNumberDoesNotExistException exception)
         {
-            logger.errorMessage(exception);
+            ErrorLogFileOutput.errorMessage(exception);
         }
         catch (DatabaseFailureException exception)
         {
-            logger.errorMessage(exception);
+            ErrorLogFileOutput.errorMessage(exception);
         }
 
         try
@@ -44,11 +53,11 @@ public class View
         }
         catch (ItemNumberDoesNotExistException exception)
         {
-            logger.errorMessage(exception);
+            ErrorLogFileOutput.errorMessage(exception);
         }
         catch (DatabaseFailureException exception)
         {
-            logger.errorMessage(exception);
+            ErrorLogFileOutput.errorMessage(exception);
         }
 
         try
@@ -58,11 +67,11 @@ public class View
         }
         catch (ItemNumberDoesNotExistException exception)
         {
-            logger.errorMessage(exception);
+            ErrorLogFileOutput.errorMessage(exception);
         }
         catch (DatabaseFailureException exception)
         {
-            logger.errorMessage(exception);
+            ErrorLogFileOutput.errorMessage(exception);
         }
 
         try
@@ -72,11 +81,11 @@ public class View
         }
         catch (ItemNumberDoesNotExistException exception)
         {
-            logger.errorMessage(exception);
+            ErrorLogFileOutput.errorMessage(exception);
         }
         catch (DatabaseFailureException exception)
         {
-            logger.errorMessage(exception);
+            ErrorLogFileOutput.errorMessage(exception);
         }
 
         double change = contr.pay(500);

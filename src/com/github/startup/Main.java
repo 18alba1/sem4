@@ -1,7 +1,7 @@
 package com.github.startup;
 
 import com.github.controller.Controller;
-import com.github.view.View;
+import com.github.view.*;
 import com.github.integration.*;
 
 /*
@@ -18,11 +18,9 @@ public class Main
     public static void main (String[] args)
     {
         Controller controller = new Controller();
-
+        new ErrorLogFileOutput();
         new View(controller);
-
         new AccountingSystem();
-        //new ExternalInventory();
         new SaleLog();
     }
 }

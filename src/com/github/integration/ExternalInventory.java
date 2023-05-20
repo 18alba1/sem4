@@ -16,8 +16,15 @@ public class ExternalInventory
     /*
      * The external inventory
      */
-    private ExternalInventory() { }
+    private ExternalInventory()
+    { 
 
+    }
+
+    /**
+     * Gets instance of object
+     * @return returns instance
+     */
     public static ExternalInventory getInstance()
     {
         if (instance == null)
@@ -67,6 +74,7 @@ public class ExternalInventory
     }
 
     */
+
     /**
      * Searches fo intem in the item inventory. 
      * @param barcode   The barcode of the product
@@ -85,7 +93,9 @@ public class ExternalInventory
 			if (this.itemList[i].getItemNumber() == barcode)
                 return foundItem;
 		}
-		throw new ItemNumberDoesNotExistException(barcode);
+        if (barcode > itemList.length - 1)
+		    throw new ItemNumberDoesNotExistException(barcode);
+        return null;
 	}
 
     /*

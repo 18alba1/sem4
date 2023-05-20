@@ -2,9 +2,7 @@ package com.github.model;
 
 import java.util.ArrayList;
 import com.github.dtos.ItemDTO;
-import com.github.integration.ExternalInventory;
-import com.github.integration.ItemNumberDoesNotExistException;
-import com.github.integration.DatabaseFailureException;
+import com.github.integration.*;
 
 
 /*
@@ -61,9 +59,8 @@ public class Goods
      * @param barcode The barcode of the product to be added.
      * @return The ItemDTO object representing the added product.
      */
-    public ItemDTO addProduct(int barcode) throws ItemNumberDoesNotExistException, DatabaseFailureException
+    public ItemDTO addProduct(ItemDTO item)
     {
-        ItemDTO item = externalInventory.searchItemInventory(barcode);
         if (item.getItemNumber() != 0)
         {
         boolean found = checkIfDuplicatedItem(item);

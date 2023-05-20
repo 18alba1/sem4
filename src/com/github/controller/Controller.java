@@ -2,13 +2,10 @@ package com.github.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.github.dtos.*;
 import com.github.model.*;
-import com.github.view.ErrorMessageHandler;
-import com.github.integration.ExternalInventory;
-import com.github.integration.ItemNumberDoesNotExistException;
-import com.github.integration.DatabaseFailureException;
+import com.github.view.ErrorLogFileOutput;
+import com.github.integration.*;
 
 /*
  * The controller class which contains all logic
@@ -17,9 +14,8 @@ public class Controller
 {
     private Goods goods;
     private Register register;
-    private ErrorMessageHandler logger = new ErrorMessageHandler();
     private List<SaleObserver> sObs = new ArrayList<SaleObserver>();
-    private ExternalInventory extInvSys;
+    private ExternalInventory extInvSys = ExternalInventory.getInstance();
 
     /* 
      * Creates the Register
@@ -35,8 +31,6 @@ public class Controller
     public void startSale()
     {
         goods = new Goods();
-        for(SaleObserver SO : sObs)
-            register.addsObs(SO);
     }
 
     /*
@@ -53,18 +47,17 @@ public class Controller
         try
         {
             ItemDTO item = extInvSys.searchItemInventory(barcode);
+            goods.addProduct(item);
             register.updateTotal(item);
     
             return item;
         }
         catch (ItemNumberDoesNotExistException exception)    
         {
-            logger.errorMessage(exception);
             throw new ItemNumberDoesNotExistException(barcode);
         }
         catch (DatabaseFailureException exception)
         {
-            logger.errorMessage(exception);
             throw new DatabaseFailureException();
         }
     }
@@ -91,9 +84,8 @@ public class Controller
     {
         ArrayList<ItemDTO> itemList = goods.getItems();
         ReceiptDTO receipt = register.createReceipt(itemList);
-        register.notifyObservers();
         ExternalInventory.updateInventory(itemList);
-        
+
         return receipt;
     }
 
@@ -107,4 +99,9 @@ public class Controller
         sObs.add(SO);
     }
 
+    public void addsObsToRegister()
+    {
+        for(SaleObserver SO : sObs)
+            register.addsObs(SO);
+    }
 }
