@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class ReceiptDTO
 {
+    private double totalDiscount;
     private double totalPrice;
     private double totalVAT;
     private double change;
@@ -17,12 +18,13 @@ public class ReceiptDTO
      * @param items, a list of items
      * @param totalVAT, the total VAT-rate
      */
-    public ReceiptDTO(double totalPrice, double totalVAT, double change, ArrayList<ItemDTO> items)
+    public ReceiptDTO(double totalPrice, double totalVAT, double change, ArrayList<ItemDTO> items, double totalDiscount)
     {
         this.totalPrice = totalPrice;
         this.totalVAT = totalVAT;
         this.change = change;
         this.items = items;
+        this.totalDiscount = totalDiscount;
     }
 
     /*
@@ -41,7 +43,8 @@ public class ReceiptDTO
             receipt += items.get(i).toString();
         }
 
-        receipt += "Total Price(Inc. VAT): " + totalPrice + " kr \n" + "Total Vat: " + totalVAT + " kr \n" + "Change back: " + change + " kr";
+        receipt += "Total Price(Inc. VAT): " + (totalPrice + totalDiscount) + " kr \n" + "Total discount: " + totalDiscount + " kr \n" + "Total Vat: " + totalVAT + " kr \n" + "Price after discount: " + totalPrice + " kr \n" + "Change back: " + change + " kr";
+        receipt += "\n" + "Date of purchase: " + java.time.LocalDate.now();
         receipt += "\n" + "-------------------";
 
         return receipt;

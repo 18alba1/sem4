@@ -27,6 +27,9 @@ public class View
         
     }
 
+
+
+    
     private void testRun(Controller contr)
     {
         contr.startSale();
@@ -48,7 +51,7 @@ public class View
 
         try
         {
-            ItemDTO item2 = contr.scanProduct(2);
+            ItemDTO item2 = contr.scanProduct(4);
             System.out.println("Scanned Item: " + item2.getName());
         }
         catch (ItemNumberDoesNotExistException exception)

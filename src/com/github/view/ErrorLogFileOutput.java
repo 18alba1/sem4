@@ -2,6 +2,8 @@ package com.github.view;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import com.github.integration.*;
+import com.github.integration.ItemNumberDoesNotExistException;
 
 /* Source for TotalIncomeFileOutput() inspiration:
  Lindbäck, L. (2023). A First Course in Object Oriented Development. Creative Commons
@@ -37,7 +39,7 @@ public class ErrorLogFileOutput
          * Prints error masager to user
          * @param exception the exception
          */
-        OutputFile.println ("Date: " + java.time.LocalDate.now() + " Developer errorlog: " + exception);
-        System.out.println("Date: " + java.time.LocalDate.now() + " Developer errorlog: " + exception + "\n");
+        OutputFile.println ("Date: " + java.time.LocalDate.now() + " Developer errorlog: " + exception + "\n");
+        System.out.println("Date: " + java.time.LocalDate.now() + " " + exception.getMessage() + " Contact customer service." + "\n");
     }
 }

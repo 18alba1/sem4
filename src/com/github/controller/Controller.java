@@ -70,7 +70,7 @@ public class Controller
      */
     public double pay(double paidAmount)
     {
-        double change = register.payment(paidAmount);
+        double change = register.payment(paidAmount, goods.getItems());
         
         return change; 
     }

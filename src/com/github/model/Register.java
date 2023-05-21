@@ -10,6 +10,7 @@ import com.github.integration.*;
  */
 public class Register 
 {
+    private DiscountService discountS = new DiscountService();
     private double totalPrice;
     private double totalVAT; 
     private double change;
@@ -35,10 +36,17 @@ public class Register
      * @param paidAmount The amount paid by the customer.
      * @return The change owed to the customer.
      */
-    public double payment(double paidAmount) 
+    public double payment(double paidAmount, ArrayList<ItemDTO> items) 
     {
+        discountS.setDiscount(new DiscountProduct());
+        discountS.processDiscount(items);
+
+        discountS.setDiscount(new DiscountQuantity());
+        discountS.processDiscount(items);
+        totalPrice -= discountS.getTotalDiscount();
+
         change = paidAmount - totalPrice;
-    
+
         return change;
     }
 
@@ -49,14 +57,14 @@ public class Register
      */
     public ReceiptDTO createReceipt(ArrayList<ItemDTO> items)
     {
-        ReceiptDTO receipt = new ReceiptDTO(totalPrice, totalVAT, change, items);
+        ReceiptDTO receipt = new ReceiptDTO(totalPrice, totalVAT, change, items, discountS.getTotalDiscount());
         notifyObservers();
         AccountingSystem.updateAccountingInfo(receipt);
         SaleLog.addSale(receipt);
         totalPrice = 0;
         change = 0;
         totalVAT = 0;
-
+        discountS.setTotalDiscount(0);
         return receipt;
     }
     
