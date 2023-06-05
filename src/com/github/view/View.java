@@ -24,7 +24,6 @@ public class View
         testRun(contr);
         testRun(contr);
         testRun(contr);
-        
     }
 
 

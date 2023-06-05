@@ -183,3 +183,51 @@ Date: 2023-05-21 Developer errorlog: com.github.integration.DatabaseFailureExcep
 
 Date: 2023-05-21 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
 
+Date: 2023-05-22 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-05-22 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-06-05 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-06-05 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-06-05 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-06-05 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
+Date: 2023-06-05 Developer errorlog: com.github.integration.DatabaseFailureException: ERROR :  Failed to connect with database server.
+
+Date: 2023-06-05 Developer errorlog: com.github.integration.ItemNumberDoesNotExistException: ERROR: Could not find product with itemIdenifier: 4 in the inventory catalog.
+
